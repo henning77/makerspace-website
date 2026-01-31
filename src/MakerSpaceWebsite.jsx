@@ -137,6 +137,17 @@ const MakerSpaceWebsite = () => {
     try { await window.storage.set('makerspace-settings', JSON.stringify(newSettings)); } catch (e) {}
   };
 
+  // Update theme-color meta tag and body background for iOS Safari
+  useEffect(() => {
+    const color = settings.darkMode ? '#0f0f0f' : '#f5f5f5';
+    document.documentElement.style.background = color;
+    document.body.style.background = color;
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]:not([media])') || document.createElement('meta');
+    metaThemeColor.name = 'theme-color';
+    metaThemeColor.content = color;
+    if (!metaThemeColor.parentNode) document.head.appendChild(metaThemeColor);
+  }, [settings.darkMode]);
+
   // Play notification sound
   const playNotificationSound = () => {
     if (!settings.sound) return;
@@ -635,7 +646,7 @@ const MakerSpaceWebsite = () => {
       )}
 
       {/* Navigation */}
-      <nav style={{ position: 'sticky', top: 0, padding: '15px 40px', background: settings.darkMode ? 'rgba(15,15,15,0.95)' : 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100, flexWrap: 'wrap', gap: '10px' }}>
+      <nav style={{ position: 'sticky', top: 0, padding: 'max(15px, env(safe-area-inset-top)) max(40px, env(safe-area-inset-right)) 15px max(40px, env(safe-area-inset-left))', background: settings.darkMode ? 'rgba(15,15,15,0.95)' : 'rgba(255,255,255,0.95)', backdropFilter: 'blur(10px)', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 100, flexWrap: 'wrap', gap: '10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{ width: '40px', height: '40px', background: 'linear-gradient(135deg, #ffc832, #ff9500)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>🔨</div>
           <span style={{ fontWeight: 700, fontSize: '1.2rem' }}>MAKER SPACE</span>
