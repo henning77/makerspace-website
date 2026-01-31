@@ -698,7 +698,7 @@ const MakerSpaceWebsite = () => {
             {/* Language */}
             <div>
               <label style={{ display: 'block', marginBottom: '8px', color: theme.textMuted }}>{t.settings.language}</label>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px' }}>
                 {[{ code: 'de', flag: '🇩🇪', name: 'Deutsch' }, { code: 'en', flag: '🇬🇧', name: 'English' }, { code: 'es', flag: '🇪🇸', name: 'Español' }, { code: 'fr', flag: '🇫🇷', name: 'Français' }].map(lang => (
                   <button key={lang.code} onClick={() => updateSettings({ ...settings, language: lang.code })} style={{ padding: '10px', background: settings.language === lang.code ? '#a855f7' : theme.bgAlt, color: settings.language === lang.code ? '#fff' : theme.textMuted, border: `2px solid ${settings.language === lang.code ? '#a855f7' : theme.border}`, borderRadius: '8px', cursor: 'pointer' }}>
                     {lang.flag} {lang.name}
@@ -797,7 +797,7 @@ const MakerSpaceWebsite = () => {
                   <button key={o.v} type="button" onClick={() => setFormData({ ...formData, type: o.v })} style={{ flex: 1, padding: '14px', background: formData.type === o.v ? '#ffc832' : theme.bgAlt, color: formData.type === o.v ? '#000' : theme.textMuted, border: `2px solid ${formData.type === o.v ? '#ffc832' : theme.border}`, borderRadius: '10px', fontWeight: 600, cursor: 'pointer' }}>{o.l}</button>
                 ))}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '15px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '10px', marginBottom: '15px' }}>
                 <input type="text" placeholder={t.form.color} value={formData.color} onChange={e => setFormData({ ...formData, color: e.target.value })} style={{ padding: '12px', background: theme.bgAlt, border: `2px solid ${theme.border}`, borderRadius: '10px', color: theme.text, boxSizing: 'border-box' }} />
                 <input type="text" placeholder={t.form.size} value={formData.size} onChange={e => setFormData({ ...formData, size: e.target.value })} style={{ padding: '12px', background: theme.bgAlt, border: `2px solid ${theme.border}`, borderRadius: '10px', color: theme.text, boxSizing: 'border-box' }} />
               </div>
